@@ -1,0 +1,12 @@
+{
+    "lerna": "3.4.0",
+    "packages": [
+        "@uportal-notify/*"
+    ],
+    "version": "1.26.0",
+    "command": {
+        "version": {
+            "forcePublish": true
+        }
+    }
+}
