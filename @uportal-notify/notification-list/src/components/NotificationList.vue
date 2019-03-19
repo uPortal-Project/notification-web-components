@@ -1,24 +1,25 @@
 <template>
-  <span>Hello from the Notification List</span>
+  <div class="notification-list-container">
+    Hello from the Notification List
+  </div>
 </template>
 <script>
-import oidc from '@uportal/open-id-connect';
+// import oidc from '@uportal/open-id-connect';
 
 export default {
   name: 'notification-list',
   data() {
-    return {
-    };
+    return {};
   },
-  computed: { },
+  computed: {},
   props: {
     oidcUrl: {
       type: String,
       default: '/uPortal/api/v5-1/userinfo'
     }
   },
-  methods: { },
-  mounted() { }
+  methods: {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
