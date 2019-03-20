@@ -1,20 +1,17 @@
 {
-  "name": "@uportal-notify/notification-banner",
+  "name": "@uportal/notification-modal",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target wc --name notification-modal --dest build/static/js 'src/components/NotificationModal.vue'",
     "prebuild": "babel node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
-    "build": "vue-cli-service build --target wc --name notification-banner --dest build/static/js 'src/components/NotificationBanner.vue'",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.6",
-    "@fortawesome/free-solid-svg-icons": "^5.4.1",
-    "@fortawesome/vue-fontawesome": "^0.1.1",
-    "@uportal/open-id-connect": "^1.14.1",
-    "axios": "^0.18.0",
-    "bootstrap-vue": "^2.0.0-rc.11",
+    "@uportal/open-id-connect": "1.24.0",
+    "axios": "0.18.0",
+    "bootstrap-vue": "2.0.0-rc.13",
     "vue": "2.6.7"
   },
   "devDependencies": {
@@ -22,11 +19,13 @@
     "@babel/core": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-plugin-eslint": "^3.2.0",
-    "@vue/cli-service": "^3.2.0",
+    "@vue/cli-plugin-babel": "3.4.1",
+    "@vue/cli-plugin-eslint": "3.4.1",
+    "@vue/cli-service": "3.4.1",
+    "@vue/eslint-config-prettier": "4.0.1",
+    "lint-staged": "8.1.4",
     "node-sass": "4.11.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "7.1.0",
     "vue-template-compiler": "2.6.7"
   },
   "eslintConfig": {
@@ -36,7 +35,7 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "@vue/prettier"
     ],
     "rules": {},
     "parserOptions": {
@@ -49,8 +48,20 @@
     }
   },
   "browserslist": [
-    "> 1%",
     "last 2 versions",
-    "not ie <= 8"
-  ]
+    "not ie < 11"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
 }

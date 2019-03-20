@@ -45,14 +45,14 @@
     "lint:js": "eslint --ext vue .",
     "lint:ts": "tslint -c tslint.json '**/*.ts'",
     "lint:css": "stylelint '**/*.{css,scss,vue}'",
-    "lint:md": "remark --frail '*.md' 'docs/**/*.md' '@uportal-notify/*/*.md'",
+    "lint:md": "remark --frail '*.md' 'docs/**/*.md' '@uportal/*/*.md'",
     "start": "lerna run start",
     "test": "npm-run-all test:* lint:*",
     "test:packages": "lerna run test",
     "publish-webjar": "lerna-webjar"
   },
   "workspaces": [
-    "@uportal-notify/*"
+    "@uportal/*"
   ],
   "commitlint": {
     "extends": [

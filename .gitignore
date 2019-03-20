@@ -204,8 +204,8 @@ $RECYCLE.BIN/
 
 yarn.lock
 .env.*
-@uportal-notify/*/dist
-@uportal-notify/*/cjs
-@uportal-notify/*/esm
-@uportal-notify/*/umd
-@uportal-notify/*/build
+@uportal/*/dist
+@uportal/*/cjs
+@uportal/*/esm
+@uportal/*/umd
+@uportal/*/build

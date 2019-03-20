@@ -16,7 +16,7 @@ subprojects {
     project.version = parsedJson.version + '-SNAPSHOT'
 
     jar {
-        baseName "uportal-notify__${project.name}"
+        baseName "uportal__${project.name}"
         from '.'
         exclude 'build'
         exclude 'node_modules'
