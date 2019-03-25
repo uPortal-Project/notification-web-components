@@ -1,8 +1,12 @@
 <template>
-  <main>
-    <notification-list
-      oidc-url="/proxy/uPortal/api/v5-1/userinfo"
-    ></notification-list>
+  <main class="p-3">
+    <div class="container">
+      <notification-list debug notification-api-url="sample-notifications.json">
+        <template v-slot:header>
+          <h2>Recent Updates</h2>
+        </template>
+      </notification-list>
+    </div>
   </main>
 </template>
 <script>
