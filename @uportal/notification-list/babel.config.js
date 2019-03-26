@@ -1,4 +1,7 @@
 module.exports = {
   presets: ['@babel/preset-env'],
-  plugins: [['@babel/plugin-transform-runtime', { useESModules: true }]]
+  plugins: [
+    '@babel/plugin-proposal-optional-chaining',
+    ['@babel/plugin-transform-runtime', { useESModules: true }]
+  ]
 };

@@ -12,58 +12,14 @@
       </button>
     </div>
     <div class="notification-list-content notification-list-section">
-      <article
-        class="media py-4 border-bottom d-flex justify-content-between"
+      <notification-item
         v-for="(item, index) in this.notifications"
         :key="index"
+        :notification="item"
+        @performaction="gotoAction($event)"
+        :highlight="item.id === highlight"
       >
-        <img
-          class="media-image mr-3 rounded"
-          :src="item.image"
-          :alt="item.title"
-          v-if="item.image"
-        />
-        <div class="media-image mr-3 rounded img-placeholder" v-else />
-        <div class="media-body">
-          <h4 class="mt-0">
-            {{ item.title }}
-            <span class="text-muted" v-if="item.dueDate">
-              - Due {{ item.dueDate | dueDate }}</span
-            >
-          </h4>
-          <p>{{ item.body }}</p>
-          <p class="media-link" v-if="item.url">
-            <a :href="item.url" target="_blank">{{ item.url }}</a>
-          </p>
-        </div>
-        <div
-          class="media-actions"
-          v-if="item.availableActions && item.availableActions.length"
-        >
-          <dropdown id="_uid" no-caret dropleft toggle-class="btn-icon">
-            <template slot="button-content">
-              <font-awesome-icon icon="ellipsis-v" size="2x" fixed-width />
-            </template>
-            <dropdown-item-button
-              v-for="(action, num) in item.availableActions"
-              :key="num"
-              @click="gotoAction(action)"
-            >
-              {{ action.label }}
-            </dropdown-item-button>
-          </dropdown>
-        </div>
-      </article>
-      <form
-        class="hidden"
-        method="POST"
-        :action="selectedAction.apiUrl"
-        target="blank"
-        ref="gotoForm"
-        v-if="selectedAction"
-      >
-        <input type="hidden" value="something" />
-      </form>
+      </notification-item>
     </div>
     <div class="notification-list-footer notification-list-section">
       <slot name="footer"></slot>
@@ -73,15 +29,8 @@
 <script>
 import oidc from '@uportal/open-id-connect';
 
-import Dropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
-import DropdownHeader from 'bootstrap-vue/es/components/dropdown/dropdown-header';
-import DropdownItemButton from 'bootstrap-vue/es/components/dropdown/dropdown-item-button';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { format } from 'date-fns';
-
-library.add(faEllipsisV);
+import NotificationItem from './NotificationItem';
+import queryString from 'query-string';
 
 /*eslint-disable */
 
@@ -113,15 +62,16 @@ export default {
   },
   methods: {
     gotoAction(action) {
-      if (action && action.apiUrl) {
-        this.selectedAction = action;
-        setTimeout(() => {
-          this.$refs.gotoForm.submit();
-        }, 1);
-      }
+      let form = document.createElement('form');
+      form.action = action.apiUrl;
+      form.method = 'POST';
+      form.target = '_blank';
+      form.style.display = 'none';
+      document.body.appendChild(form);
+      form.submit();
     },
     markAllAsRead() {
-      this.gotoAction({ apiUrl: this.markAllAsReadLink });
+      this.gotoAction(this.markAllAsReadLink);
     },
     handleOidcError(err) {
       this.hasError = true;
@@ -174,17 +124,17 @@ export default {
   },
   mounted() {
     this.fetchNotificationData();
+
+    let queryParams = queryString.parse(location.search);
+    this.highlight = queryParams.highlight;
   },
   components: {
-    Dropdown,
-    DropdownHeader,
-    DropdownItemButton,
-    FontAwesomeIcon
+    NotificationItem
   }
 };
 </script>
 <style lang="scss" scoped>
-.notification-list-container /deep/ {
+.notification-list-container {
   @import '../../node_modules/bootstrap/scss/bootstrap';
 
   .hidden {
@@ -206,80 +156,6 @@ export default {
     padding: 1rem 0;
     border: 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .media-image {
-    object-fit: cover;
-    width: 64px;
-    height: 64px;
-
-    &.img-placeholder {
-      background: #ccc;
-      background-color: var(--notif-list-ph-bg-color, #ccc);
-    }
-  }
-
-  .media-body {
-    p.media-link {
-      margin: 0;
-    }
-  }
-
-  .btn-icon {
-    background: transparent;
-    border-color: transparent;
-    width: 18px;
-    height: 25px;
-    margin-left: 4px;
-    margin-right: 4px;
-    background: transparent;
-    border: 0 none;
-    line-height: 0;
-    padding: 0;
-    position: relative;
-    color: #333;
-
-    &:hover {
-      background: transparent;
-      color: #333;
-    }
-    &:not(:disabled),
-    :disabled {
-      &:focus,
-      &:active {
-        outline: none;
-        box-shadow: none;
-        background-color: transparent;
-        border-color: transparent;
-      }
-    }
-    &:after {
-      display: none;
-    }
-  }
-
-  .dropdown-toggle-no-caret {
-    &::before {
-      display: none !important;
-      content: none;
-      margin: 0px;
-    }
-  }
-
-  .dropdown-menu {
-    max-width: 30rem;
-    padding: 0px;
-
-    .dropdown-item {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 1rem 1.5rem;
-      font-size: 1.2rem;
-
-      &.text-center {
-        text-align: center;
-      }
-    }
   }
 }
 </style>
