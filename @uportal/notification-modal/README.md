@@ -2,7 +2,7 @@
 
 ## Installation
 
-See the [top level README](../README.md)
+See the [top level README](../../README.md)
 
 ## Development Setup
 
@@ -19,4 +19,4 @@ npm test
 
 ## Vue CLI Guide
 
-https://cli.vuejs.org/guide/
+<https://cli.vuejs.org/guide/>
