@@ -1,6 +1,6 @@
 # Notification Web Components
 
-[![Build Status](https://travis-ci.org/uPortal-contrib/notification-web-components.svg?branch=master)](https://travis-ci.org/uPortal-contrib/notification-web-components)
+[![Build Status](https://travis-ci.com/uPortal-contrib/notification-web-components.svg?branch=master)](https://travis-ci.com/uPortal-contrib/notification-web-components)
 
 > A collection of reusable, standardized, and accessible [web components][] for [uPortal][]
 
