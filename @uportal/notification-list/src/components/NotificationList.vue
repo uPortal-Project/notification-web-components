@@ -14,7 +14,8 @@
                 :key="index"
                 :notification="item"
                 @performaction="gotoAction($event)"
-                :highlight="item.id === highlight"
+                :highlight="highlight && item.id === highlight"
+                :color-map="colorMap"
             >
             </notification-item>
         </div>
@@ -55,6 +56,14 @@ export default {
         debug: {
             type: Boolean,
             default: false
+        },
+        colorMap: {
+            type: Object,
+            default: () => ({
+                Announcement: '#6649bb',
+                Holds: '#487df9',
+                'To-Do': '#c85a89'
+            })
         }
     },
     methods: {
