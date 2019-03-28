@@ -1,5 +1,30 @@
 {
     "private": true,
+    "devDependencies": {
+        "@commitlint/cli": "^7.2.1",
+        "@commitlint/config-conventional": "^7.0.0",
+        "@commitlint/travis-cli": "^7.2.1",
+        "@mapbox/stylelint-processor-arbitrary-tags": "^0.2.0",
+        "@vue/eslint-config-prettier": "^4.0.0",
+        "babel-eslint": "^10.0.0",
+        "eslint": "^5.7.0",
+        "eslint-config-google": "^0.12.0",
+        "eslint-plugin-flowtype": "^3.0.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-vue": "^5.0.0-beta.3",
+        "lerna": "^3.4.0",
+        "lerna-webjar": "^1.0.0",
+        "lint-staged": "^8.0.0",
+        "npm-run-all": "^4.1.5",
+        "prettier-eslint-cli": "^4.7.1",
+        "prettier-stylelint": "^0.4.2",
+        "remark-cli": "^6.0.0",
+        "remark-preset-lint-recommended": "^3.0.1",
+        "remark-validate-links": "^7.1.0",
+        "stylelint": "^9.5.0",
+        "stylelint-config-standard": "^18.2.0",
+        "yorkie": "^2.0.0"
+    },
     "scripts": {
         "bootstrap": "lerna bootstrap --ci",
         "prebuild": "rm -rf \"**/node_modules\" && npm ci && lerna bootstrap --ci",
@@ -33,7 +58,6 @@
             "parser": "babel-eslint"
         },
         "extends": [
-            "react-app",
             "plugin:vue/strongly-recommended",
             "eslint:recommended",
             "google"
