@@ -1,7 +1,7 @@
 <template>
-  <button type="button" class="btn btn-primary" @click="$emit('click')">
-    <slot></slot>
-  </button>
+    <button type="button" class="btn btn-primary" @click="$emit('click')">
+        <slot></slot>
+    </button>
 </template>
 
 <script>
@@ -12,6 +12,6 @@
  * than crashing
  */
 export default {
-  name: 'ie-modal'
+    name: 'ie-modal'
 };
 </script>

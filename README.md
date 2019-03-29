@@ -8,8 +8,8 @@
 
 There are couple options for installing components:
 
-- a [node][] package through [npm][] or [yarn][]
-- a [webjar][] through [gradle][] or [maven][]
+-   a [node][] package through [npm][] or [yarn][]
+-   a [webjar][] through [gradle][] or [maven][]
 
 ```bash
 # install with npm
@@ -48,7 +48,7 @@ For example an `example-component` would be loaded by adding
 
 ## Components
 
-- [Notification List](@uportal/notification-list/README.md)
+-   [Notification List](@uportal/notification-list/README.md)
 
 ## Contribute
 
@@ -58,10 +58,10 @@ Want to chat with the community and contributors? Join us in [Slack][] and the [
 
 ## Additional Topics
 
-- [Local Project Setup](docs/en/developer/SETUP.md)
-- [Using -SNAPSHOT Builds in uPortal-start](docs/en/developer/SNAPSHOT.md)
-- [Project Automation Tools](docs/en/developer/AUTOMATION.md)
-- [Project Conventions and Practices](docs/en/developer/CONVENTIONS.md)
+-   [Local Project Setup](docs/en/developer/SETUP.md)
+-   [Using -SNAPSHOT Builds in uPortal-start](docs/en/developer/SNAPSHOT.md)
+-   [Project Automation Tools](docs/en/developer/AUTOMATION.md)
+-   [Project Conventions and Practices](docs/en/developer/CONVENTIONS.md)
 
 [contributing.md]: CONTRIBUTING.md
 [gradle]: https://docs.gradle.org
