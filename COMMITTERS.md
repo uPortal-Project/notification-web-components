@@ -10,8 +10,8 @@ The committers for this project are those for uPortal itself, documented as of t
 
 With the addition of the following committers:
 
-- Ryan Mathis (@rmathis)
+-   Ryan Mathis (@rmathis)
 
 (Modeled as [a GitHub Team][notification-web-components-committers] with `Admin` on the `uPortal-contrib/notification-web-components` repo.)
 
-[uportal-web-components-committers]: https://github.com/orgs/uPortal-contrib/teams/notification-web-components-committers
+[notification-web-components-committers]: https://github.com/orgs/uPortal-contrib/teams/notification-web-components-committers
