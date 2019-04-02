@@ -117,8 +117,6 @@ export default {
         }
     },
     mounted() {
-        console.log('mounted');
-
         this.fetchNotificationData();
 
         const queryParams = queryString.parse(location.search);
