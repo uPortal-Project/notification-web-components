@@ -30,17 +30,17 @@
         "prebuild": "rm -rf \"**/node_modules\" && npm ci && lerna bootstrap --ci",
         "build": "lerna run build",
         "ci:commitlint": "commitlint-travis",
-        "format": "npm-run-all -p format:*",
+        "format": "run-p format:*",
         "format:js": "prettier-eslint --write '**/*.{js,vue}'",
         "format:md": "prettier --write '**/*.md'",
         "format:html": "prettier --write '**/*.html'",
         "format:css": "prettier-stylelint --write '**/*.css'",
-        "lint": "npm-run-all lint:*",
+        "lint": "run-s lint:*",
         "lint:js": "eslint --ext vue .",
-        "lint:css": "stylelint '**/*.{css,scss,vue}'",
+        "lint:css": "stylelint '**/*.{css,scss,vue}' --syntax scss",
         "lint:md": "remark --frail '*.md' 'docs/**/*.md' '@uportal/*/*.md'",
         "start": "lerna run start",
-        "test": "npm-run-all test:* lint:*",
+        "test": "run-s test:* lint:*",
         "test:packages": "lerna run test",
         "publish-webjar": "lerna-webjar"
     },
@@ -96,7 +96,7 @@
         ],
         "*.scss": [
             "prettier --write --parser scss",
-            "stylelint",
+            "stylelint --syntax scss",
             "git add"
         ],
         "*.{html,md,json}": [
@@ -111,7 +111,8 @@
         "extends": "stylelint-config-standard",
         "rules": {
             "no-empty-source": null,
-            "no-descending-specificity": null
+            "no-descending-specificity": null,
+            "indentation": 4
         }
     },
     "remarkConfig": {
