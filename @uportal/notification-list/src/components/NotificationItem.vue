@@ -164,10 +164,12 @@ export default {
         background-color: aliceblue;
         background-color: var(--notif-unread-bg-color, aliceblue) !important;
     }
+
     .read {
         background-color: #fff;
         background-color: var(--notif-read-bg-color, #fff) !important;
     }
+
     .highlight {
         background-color: honeydew;
         background-color: var(--notif-read-bg-color, honeydew) !important;
@@ -180,7 +182,6 @@ export default {
         height: 25px;
         margin-left: 4px;
         margin-right: 4px;
-        background: transparent;
         border: 0 none;
         line-height: 0;
         padding: 0;
@@ -191,6 +192,7 @@ export default {
             background: transparent;
             color: #333;
         }
+
         &:not(:disabled),
         :disabled {
             &:focus,
@@ -201,7 +203,8 @@ export default {
                 border-color: transparent;
             }
         }
-        &:after {
+
+        &::after {
             display: none;
         }
     }
@@ -210,13 +213,13 @@ export default {
         &::before {
             display: none !important;
             content: none;
-            margin: 0px;
+            margin: 0;
         }
     }
 
     .dropdown-menu {
         max-width: 30rem;
-        padding: 0px;
+        padding: 0;
 
         .dropdown-item {
             overflow: hidden;
