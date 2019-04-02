@@ -61,12 +61,42 @@ We have a `/proxy/` leading the `oidc-url` attribute. This is a developer conven
 
 `<notification-list>` takes the following attributes:
 
+### `notification-api-url`
+
+Url to connect notification-endpoint. Defaults to `/NotificationPortlet/api/v2/notifications`.
+
+```html
+<notification-list oidc-url="/NotificationPortlet/api/v2/notifications"></notification-list>
+```
+
 ### `oidc-url`
 
 Url to connect to oidc. The default for this value is `/uPortal/api/v5-1/userinfo`.
 
 ```html
 <notification-list oidc-url="/uPortal/api/v5-1/userinfo"></notification-list>
+```
+
+### `color-map`
+
+A map of colors associated with notification categories. The component will choose the first category defined to determine this.
+
+```html
+<notification-list
+    oidc-url='{
+  "Announcement": "#6649bb",
+  "Holds": "#487df9",
+  "To-Do": "#c85a89"
+}'
+></notification-list>
+```
+
+### `debug`
+
+Skips oidc call for api token.
+
+```html
+<notification-list debug></notification-list
 ```
 
 ### Theming
@@ -80,5 +110,11 @@ bg = background
 
 ```css
 :root {
+    --notif-list-ph-bg-color: #ccc; /* color of list icon (category) default color */
+    --notif-unread-bg-color: aliceblue; /* background color of unread notifications */
+    --notif-read-bg-color: white; /* background color of read notifications */
+    --notif-highlight-bg-color: honeydew; /* background color of highlighted notifications */
+    --notif-list-item-dd-width: 12px; /* size of ellipsis-v icon trigger for dropdown */
+    --notif-list-item-dd-height: 28px; /* size of ellipsis-v icon trigger for dropdown */
 }
 ```

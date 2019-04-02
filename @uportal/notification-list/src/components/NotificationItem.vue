@@ -8,7 +8,8 @@
                 class="media-image mr-3 rounded"
                 :src="notification.image"
                 :alt="notification.title"
-                v-if="notification.image"
+                v-if="notification.image && !imageError"
+                @error="imageError = true"
             />
             <div
                 class="media-image mr-3 rounded img-placeholder"
@@ -56,7 +57,6 @@
 </template>
 <script>
 import Dropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
-import DropdownHeader from 'bootstrap-vue/es/components/dropdown/dropdown-header';
 import DropdownItemButton from 'bootstrap-vue/es/components/dropdown/dropdown-item-button';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
@@ -65,12 +65,12 @@ import { format } from 'date-fns';
 
 library.add(faEllipsisV);
 
-/*eslint-disable */
-
 export default {
     name: 'notification-item',
     data() {
-        return {};
+        return {
+            imageError: false
+        };
     },
     props: {
         notification: {
@@ -86,7 +86,6 @@ export default {
             default: () => ({})
         }
     },
-    mounted() {},
     computed: {
         isRead() {
             return JSON.parse(this.notification?.attributes?.READ?.[0] || 'true');
@@ -108,12 +107,11 @@ export default {
                 : '';
         },
         itemDueDate() {
-            let dueDate = this.notification.dueDate;
+            const dueDate = this.notification.dueDate;
             if (!dueDate) {
                 return null;
             }
-            let date = format(new Date(dueDate.time), 'MM/DD/YYYY');
-            return date;
+            return format(new Date(dueDate.time), 'MM/DD/YYYY');
         },
         bgColor() {
             return this.notification.attributes.category
@@ -123,7 +121,6 @@ export default {
     },
     components: {
         Dropdown,
-        DropdownHeader,
         DropdownItemButton,
         FontAwesomeIcon
     }
@@ -172,14 +169,16 @@ export default {
 
     .highlight {
         background-color: honeydew;
-        background-color: var(--notif-read-bg-color, honeydew) !important;
+        background-color: var(--notif-highlight-bg-color, honeydew) !important;
     }
 
     .btn-icon {
         background: transparent;
         border-color: transparent;
-        width: 18px;
-        height: 25px;
+        width: 12px;
+        width: var(--notif-list-item-dd-width, 12px);
+        height: 28px;
+        height: var(--notif-list-item-dd-height, 28px);
         margin-left: 4px;
         margin-right: 4px;
         border: 0 none;

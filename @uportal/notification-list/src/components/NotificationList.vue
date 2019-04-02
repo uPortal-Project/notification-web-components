@@ -4,9 +4,6 @@
             class="notification-list-header notification-list-section d-flex justify-content-between"
         >
             <slot name="header"></slot>
-            <button class="btn btn-link btn-mark-read text-muted" @click="markAllAsRead">
-                Mark all as read
-            </button>
         </div>
         <div class="notification-list-content notification-list-section">
             <notification-item
@@ -18,6 +15,7 @@
                 :color-map="colorMap"
             >
             </notification-item>
+            <span v-if="loaded && !notifications.length">No results found.</span>
         </div>
         <div class="notification-list-footer notification-list-section">
             <slot name="footer"></slot>
@@ -37,14 +35,11 @@ export default {
     data() {
         return {
             notifications: [],
-            selectedAction: null
+            selectedAction: null,
+            loaded: false
         };
     },
     props: {
-        markAllAsReadLink: {
-            type: String,
-            default: '/uPortal/api/v5-1/markAllAsRead'
-        },
         oidcUrl: {
             type: String,
             default: '/uPortal/api/v5-1/userinfo'
@@ -115,9 +110,19 @@ export default {
 
                 this.notifications = payload;
             } catch (err) {
-                console.error(err);
+                this.err = err;
+            } finally {
+                this.loaded = true;
             }
         }
+    },
+    mounted() {
+        console.log('mounted');
+
+        this.fetchNotificationData();
+
+        const queryParams = queryString.parse(location.search);
+        this.highlight = queryParams.highlight;
     },
     filters: {
         dueDate: function(value) {
@@ -127,12 +132,6 @@ export default {
             let date = format(new Date(value.time), 'MM/DD/YYYY');
             return date;
         }
-    },
-    mounted() {
-        this.fetchNotificationData();
-
-        let queryParams = queryString.parse(location.search);
-        this.highlight = queryParams.highlight;
     },
     components: {
         NotificationItem
