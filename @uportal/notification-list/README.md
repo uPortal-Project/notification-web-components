@@ -110,7 +110,7 @@ bg = background
 
 ```css
 :root {
-    --notif-list-ph-bg-color: #ccc; /* color of list icon (category) default color */
+    --notif-list-icon-ph-color: #999; /* color of list icon (category) default color */
     --notif-unread-bg-color: aliceblue; /* background color of unread notifications */
     --notif-read-bg-color: white; /* background color of read notifications */
     --notif-highlight-bg-color: honeydew; /* background color of highlighted notifications */

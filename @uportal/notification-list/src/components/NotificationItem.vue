@@ -11,19 +11,23 @@
                 v-if="notification.image && !imageError"
                 @error="imageError = true"
             />
-            <div
-                class="media-image mr-3 rounded img-placeholder"
-                :style="{ 'background-color': bgColor }"
-                v-else
-            />
+            <div class="media-image mr-3 img-placeholder" :style="{ color: bgColor }" v-else>
+                <font-awesome-icon icon="comment-alt" size="2x" fixed-width />
+            </div>
             <div class="media-body">
-                <h4 class="mt-0" v-if="itemHeading">
-                    {{ itemHeading }}
+                <h4>
+                    <strong v-if="notification.title">{{ notification.title }}</strong>
                 </h4>
-                <p>
-                    <strong v-if="notification.title">{{ notification.title }}:</strong>&nbsp;{{
-                        notification.body
-                    }}
+                <p class="text-dark" v-if="notification.body" v-html="notification.body"></p>
+                <p class="mt-0" v-if="itemHeading">
+                    <span v-if="itemCategories">{{ itemCategories }}</span>
+                    <span v-if="itemCategories && itemDueDate">&nbsp;-&nbsp;</span>
+                    <span v-if="itemDueDate" :class="{ 'text-danger': isPastDue }">{{
+                        itemDueDate
+                    }}</span>
+                </p>
+                <p class="blockquote-footer">
+                    Source: <cite :title="notification.source">{{ notification.source }}</cite>
                 </p>
                 <p class="media-link" v-if="notification.url">
                     <a
@@ -60,10 +64,12 @@ import Dropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
 import DropdownItemButton from 'bootstrap-vue/es/components/dropdown/dropdown-item-button';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
+import { faCommentAlt } from '@fortawesome/free-solid-svg-icons/faCommentAlt';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { format } from 'date-fns';
+import { format, isPast, distanceInWordsToNow } from 'date-fns';
 
 library.add(faEllipsisV);
+library.add(faCommentAlt);
 
 export default {
     name: 'notification-item',
@@ -84,6 +90,10 @@ export default {
         colorMap: {
             type: Object,
             default: () => ({})
+        },
+        dateFormat: {
+            type: String,
+            default: 'MM/DD/YYYY'
         }
     },
     computed: {
@@ -107,11 +117,22 @@ export default {
                 : '';
         },
         itemDueDate() {
-            const dueDate = this.notification.dueDate;
-            if (!dueDate) {
+            if (!this.notification.dueDate) {
                 return null;
             }
-            return format(new Date(dueDate.time), 'MM/DD/YYYY');
+            const dueDate = this.notification.dueDate;
+            const notificationDate = new Date(dueDate.time);
+            let ago = '';
+            if (this.isPastDue) {
+                ago = ` ${distanceInWordsToNow(notificationDate, { addSuffix: true })}`;
+            }
+            return `Due${ago} on ${format(notificationDate, this.dateFormat)}`;
+        },
+        isPastDue() {
+            if (!this.notification.dueDate) {
+                return false;
+            }
+            return isPast(new Date(this.notification.dueDate.time));
         },
         bgColor() {
             return this.notification.attributes.category
@@ -142,12 +163,13 @@ export default {
 
     .media-image {
         object-fit: cover;
-        width: 48px;
-        height: 48px;
+        width: 40px;
+        height: 40px;
 
         &.img-placeholder {
-            background: #ccc;
-            background-color: var(--notif-list-ph-bg-color, #ccc);
+            text-align: right;
+            color: #999;
+            color: var(--notif-list-icon-ph-color, #999);
         }
     }
 
@@ -170,6 +192,10 @@ export default {
     .highlight {
         background-color: honeydew;
         background-color: var(--notif-highlight-bg-color, honeydew) !important;
+    }
+
+    .blockquote-footer::before {
+        content: none;
     }
 
     .btn-icon {
