@@ -71,11 +71,11 @@ export default {
         markAllAsRead() {
             this.gotoAction(this.markAllAsReadLink);
         },
-        handleOidcError(err) {
+        handleOidcError() {
             this.hasError = true;
             this.errorMessage = 'There was a problem authorizing this request.';
         },
-        handleWflError(err) {
+        handleWflError() {
             this.hasError = true;
             this.errorMessage = 'There was a problem retrieving notifications.';
         },
@@ -83,7 +83,6 @@ export default {
             try {
                 return await oidc({ userInfoApiUrl: this.oidcUrl });
             } catch (err) {
-                console.error(err);
                 this.handleOidcError(err);
             }
         },
