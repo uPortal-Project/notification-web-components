@@ -17,17 +17,24 @@
     "scripts": {
         "start": "vue-cli-service serve",
         "prebuild": "babel node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
-        "build": "vue-cli-service build --name notification-list --target wc 'src/components/*.vue'",
+        "build": "vue-cli-service build --name notification-list --target wc 'src/components/NotificationList.vue'",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
         "@uportal/open-id-connect": "^1.26.0",
         "bootstrap": "^4.3.1",
+        "bootstrap-vue": "^2.0.0-rc.15",
+        "date-fns": "^1.30.1",
         "font-awesome": "4.7.0",
+        "query-string": "^6.4.0",
         "vue": "^2.6.6"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.16",
+        "@fortawesome/free-solid-svg-icons": "^5.8.0",
+        "@fortawesome/vue-fontawesome": "^0.1.6",
         "@babel/cli": "^7.2.3",
+        "@babel/plugin-proposal-optional-chaining": "^7.2.0",
         "@babel/plugin-transform-runtime": "^7.3.4",
         "@babel/preset-env": "^7.3.4",
         "@babel/runtime": "^7.3.4",

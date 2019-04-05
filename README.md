@@ -48,7 +48,10 @@ For example an `example-component` would be loaded by adding
 
 ## Components
 
+-   [Notification Banner](@uportal/notification-banner/README.md)
+-   [Notification Icon](@uportal/notification-icon/README.md)
 -   [Notification List](@uportal/notification-list/README.md)
+-   [Notification Modal](@uportal/notification-modal/README.md)
 
 ## Contribute
 
