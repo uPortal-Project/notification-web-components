@@ -24,11 +24,8 @@
 </template>
 <script>
 import oidc from '@uportal/open-id-connect';
-
 import NotificationItem from './NotificationItem';
 import queryString from 'query-string';
-
-/*eslint-disable */
 
 export default {
     name: 'notification-list',
@@ -63,7 +60,7 @@ export default {
     },
     methods: {
         gotoAction(action) {
-            let form = document.createElement('form');
+            const form = document.createElement('form');
             form.action = action.apiUrl;
             form.method = 'POST';
             form.target = '_blank';
@@ -121,15 +118,6 @@ export default {
 
         const queryParams = queryString.parse(location.search);
         this.highlight = queryParams.highlight;
-    },
-    filters: {
-        dueDate: function(value) {
-            if (!value) {
-                return '';
-            }
-            let date = format(new Date(value.time), 'MM/DD/YYYY');
-            return date;
-        }
     },
     components: {
         NotificationItem

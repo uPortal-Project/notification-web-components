@@ -181,17 +181,17 @@ export default {
 
     .unread {
         background-color: aliceblue;
-        background-color: var(--notif-unread-bg-color, aliceblue) !important;
+        background-color: var(--notif-unread-bg-color, aliceblue);
     }
 
     .read {
         background-color: #fff;
-        background-color: var(--notif-read-bg-color, #fff) !important;
+        background-color: var(--notif-read-bg-color, #fff);
     }
 
     .highlight {
         background-color: honeydew;
-        background-color: var(--notif-highlight-bg-color, honeydew) !important;
+        background-color: var(--notif-highlight-bg-color, honeydew);
     }
 
     .blockquote-footer::before {
