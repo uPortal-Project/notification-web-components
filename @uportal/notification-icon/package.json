@@ -17,7 +17,7 @@
     "scripts": {
         "start": "vue-cli-service serve",
         "prebuild": "babel node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
-        "build": "vue-cli-service build --name notification-icon --target wc --dest build/static/js src/components/NotificationIcon.vue",
+        "build": "vue-cli-service build --name notification-icon --target wc src/components/NotificationIcon.vue",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {

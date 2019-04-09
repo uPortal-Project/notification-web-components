@@ -14,7 +14,9 @@ import DropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
 export default {
     name: 'NotificationItem',
     props: {
-        notification: Object
+        notification: Object,
+        strategy: String,
+        seeAllNotificationsUrl: String
     },
     computed: {
         redirectAction() {
@@ -32,7 +34,13 @@ export default {
             return JSON.parse(this.notification?.attributes?.READ?.[0] || 'true');
         },
         url() {
-            return this.redirectAction ? 'javascript:void(0)' : this.notification.url;
+            return this.strategy === 'list'
+                ? `${this.seeAllNotificationsUrl}${
+                      this.notification.id ? `?highlight=${this.notification.id}` : ''
+                  }`
+                : this.redirectAction
+                ? 'javascript:void(0)'
+                : this.notification.url;
         },
         onClickAction() {
             if (this.redirectAction) {
@@ -48,7 +56,7 @@ export default {
             return () => {};
         },
         target() {
-            return this.redirectAction ? '_self' : '_blank';
+            return this.redirectAction || this.strategy === 'list' ? '_self' : '_blank';
         }
     },
     components: {

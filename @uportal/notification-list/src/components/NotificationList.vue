@@ -8,6 +8,7 @@
         <div class="notification-list-content notification-list-section">
             <notification-item
                 v-for="(item, index) in this.notifications"
+                :id="item.id ? item.id : ''"
                 :key="index"
                 :notification="item"
                 @performaction="gotoAction($event)"
@@ -116,7 +117,7 @@ export default {
         this.fetchNotificationData();
 
         const queryParams = queryString.parse(location.search);
-        this.highlight = queryParams.highlight;
+        this.highlight = queryParams.highlight || queryParams.pP_highlight;
     },
     components: {
         NotificationItem
