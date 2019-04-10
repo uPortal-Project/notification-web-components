@@ -65,6 +65,8 @@ Vue.use(AsyncComputed);
 
 library.add(faBell);
 
+export const NAVIGATION_STRATEGIES = ['link', 'list'];
+
 export default {
     name: 'NotificationIcon',
     props: {
@@ -90,7 +92,8 @@ export default {
         },
         navigationStrategy: {
             type: String,
-            default: 'link'
+            default: 'link',
+            validator: value => NAVIGATION_STRATEGIES.indexOf(value) >= 0
         }
     },
     asyncComputed: {

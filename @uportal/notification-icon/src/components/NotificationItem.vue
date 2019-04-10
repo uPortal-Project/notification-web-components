@@ -10,12 +10,16 @@
 
 <script>
 import DropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
+import { NAVIGATION_STRATEGIES } from './NotificationIcon';
 
 export default {
     name: 'NotificationItem',
     props: {
         notification: Object,
-        strategy: String,
+        strategy: {
+            type: String,
+            validator: value => NAVIGATION_STRATEGIES.indexOf(value) >= 0
+        },
         seeAllNotificationsUrl: String
     },
     computed: {
