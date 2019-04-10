@@ -16,7 +16,7 @@
     "source": "src/components/NotificationModal.vue",
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build --target wc --name notification-modal --dest build/static/js 'src/components/NotificationModal.vue'",
+        "build": "vue-cli-service build --target wc --name notification-modal 'src/components/NotificationModal.vue'",
         "prebuild": "babel node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
         "lint": "vue-cli-service lint"
     },
