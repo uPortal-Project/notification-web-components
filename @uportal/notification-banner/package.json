@@ -17,7 +17,7 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "prebuild": "babel node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
-        "build": "vue-cli-service build --target wc --name notification-banner --dest build/static/js 'src/components/NotificationBanner.vue'",
+        "build": "vue-cli-service build --target wc --name notification-banner 'src/components/NotificationBanner.vue'",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
