@@ -1,7 +1,11 @@
 <template>
     <main class="p-3">
         <div class="container">
-            <notification-list debug notification-api-url="sample-notifications.json">
+            <notification-list
+                debug
+                color-map='{"Announcement":"#000000","Holds":"#00FF00","To-Do":"#FF0000"}'
+                notification-api-url="sample-notifications.json"
+            >
                 <template v-slot:header>
                     <h2>Recent Updates</h2>
                 </template>

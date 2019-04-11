@@ -3,6 +3,8 @@
         <notification-icon
             debug
             notification-api-url="sample-notifications.json"
+            navigation-strategy="list"
+            see-all-notifications-url="/uPortal/p/notification-list"
         ></notification-icon>
     </header>
 </template>

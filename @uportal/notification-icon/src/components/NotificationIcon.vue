@@ -13,6 +13,8 @@
                 v-for="notification in notifications"
                 :key="notification.id || notification.body"
                 :notification="notification"
+                :strategy="navigationStrategy"
+                :see-all-notifications-url="seeAllNotificationsUrl"
             ></notification-item>
             <dropdown-item :href="seeAllNotificationsUrl" class="text-center"
                 >See All Notifications</dropdown-item
@@ -63,6 +65,8 @@ Vue.use(AsyncComputed);
 
 library.add(faBell);
 
+export const NAVIGATION_STRATEGIES = ['link', 'list'];
+
 export default {
     name: 'NotificationIcon',
     props: {
@@ -85,6 +89,11 @@ export default {
         debug: {
             type: Boolean,
             default: false
+        },
+        navigationStrategy: {
+            type: String,
+            default: 'link',
+            validator: value => NAVIGATION_STRATEGIES.indexOf(value) >= 0
         }
     },
     asyncComputed: {

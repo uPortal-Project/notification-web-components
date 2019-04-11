@@ -8,11 +8,12 @@
         <div class="notification-list-content notification-list-section">
             <notification-item
                 v-for="(item, index) in this.notifications"
+                :id="item.id ? item.id : ''"
                 :key="index"
                 :notification="item"
                 @performaction="gotoAction($event)"
                 :highlight="highlight && item.id === highlight"
-                :color-map="colorMap"
+                :color-map="colors"
             >
             </notification-item>
             <span v-if="loaded && !notifications.length">No results found.</span>
@@ -26,6 +27,12 @@
 import oidc from '@uportal/open-id-connect';
 import NotificationItem from './NotificationItem';
 import queryString from 'query-string';
+
+const DEFAULT_COLOR_MAP = {
+    Announcement: '#6649bb',
+    Holds: '#487df9',
+    'To-Do': '#c85a89'
+};
 
 export default {
     name: 'notification-list',
@@ -50,12 +57,16 @@ export default {
             default: false
         },
         colorMap: {
-            type: Object,
-            default: () => ({
-                Announcement: '#6649bb',
-                Holds: '#487df9',
-                'To-Do': '#c85a89'
-            })
+            type: String,
+            default: () => DEFAULT_COLOR_MAP
+        }
+    },
+    computed: {
+        colors() {
+            return {
+                ...DEFAULT_COLOR_MAP,
+                ...JSON.parse(this.colorMap)
+            };
         }
     },
     methods: {
@@ -116,7 +127,7 @@ export default {
         this.fetchNotificationData();
 
         const queryParams = queryString.parse(location.search);
-        this.highlight = queryParams.highlight;
+        this.highlight = queryParams.highlight || queryParams.pP_highlight;
     },
     components: {
         NotificationItem

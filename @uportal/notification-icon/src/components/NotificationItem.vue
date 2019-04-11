@@ -3,6 +3,7 @@
         :target="target"
         :class="{ read: isRead, unread: !isRead }"
         :href="url"
+        rel="noopener noreferrer"
         @click="onClickAction()"
         >{{ notification.title }}</dropdown-item
     >
@@ -10,11 +11,17 @@
 
 <script>
 import DropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
+import { NAVIGATION_STRATEGIES } from './NotificationIcon';
 
 export default {
     name: 'NotificationItem',
     props: {
-        notification: Object
+        notification: Object,
+        strategy: {
+            type: String,
+            validator: value => NAVIGATION_STRATEGIES.indexOf(value) >= 0
+        },
+        seeAllNotificationsUrl: String
     },
     computed: {
         redirectAction() {
@@ -32,7 +39,13 @@ export default {
             return JSON.parse(this.notification?.attributes?.READ?.[0] || 'true');
         },
         url() {
-            return this.redirectAction ? 'javascript:void(0)' : this.notification.url;
+            return this.strategy === 'list'
+                ? `${this.seeAllNotificationsUrl}${
+                      this.notification.id ? `?highlight=${this.notification.id}` : ''
+                  }`
+                : this.redirectAction
+                ? 'javascript:void(0)'
+                : this.notification.url;
         },
         onClickAction() {
             if (this.redirectAction) {
@@ -48,7 +61,7 @@ export default {
             return () => {};
         },
         target() {
-            return this.redirectAction ? '_self' : '_blank';
+            return this.redirectAction || this.strategy === 'list' ? '_self' : '_blank';
         }
     },
     components: {
