@@ -3,6 +3,7 @@
         :target="target"
         :class="{ read: isRead, unread: !isRead }"
         :href="url"
+        rel="noopener noreferrer"
         @click="onClickAction()"
         >{{ notification.title }}</dropdown-item
     >

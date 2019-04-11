@@ -34,6 +34,7 @@
                         href="javascript:void(0)"
                         target="_blank"
                         @click="$emit('performaction', linkAction)"
+                        rel="noopener noreferrer"
                     >
                         {{ notification.linkText || notification.url }}
                     </a>

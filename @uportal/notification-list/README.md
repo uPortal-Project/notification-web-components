@@ -83,7 +83,7 @@ A map of colors associated with notification categories. The component will choo
 
 ```html
 <notification-list
-    oidc-url='{
+    color-map='{
   "Announcement": "#6649bb",
   "Holds": "#487df9",
   "To-Do": "#c85a89"
