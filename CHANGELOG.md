@@ -16,4 +16,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   `notification-list` web component newly implemented for this release
 -   `notification-modal` web component ported from the Apereo Notification portlet project
 
-[1.0.0]: https://github.com/uPortal-contrib/notification-web-components/commit/8e68938ac614423ace91d01e6402e2daa6071100...v1.0.0
+[unreleased]: https://github.com/uPortal-contrib/notification-web-components/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/uPortal-contrib/notification-web-components/compare/8e68938ac614423ace91d01e6402e2daa6071100...v1.0.0
