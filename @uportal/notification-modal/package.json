@@ -23,7 +23,7 @@
     "dependencies": {
         "@uportal/open-id-connect": "1.28.0",
         "axios": "0.18.0",
-        "bootstrap-vue": "2.0.0-rc.19",
+        "bootstrap-vue": "2.0.0-rc.20",
         "vue": "2.6.10"
     },
     "devDependencies": {
