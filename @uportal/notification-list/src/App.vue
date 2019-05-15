@@ -3,7 +3,7 @@
         <div class="container">
             <notification-list
                 debug
-                color-map='{"Announcement":"#000000","Holds":"#00FF00","To-Do":"#FF0000"}'
+                color-map='{"Foo":"#000000","Holds":"#00FF00","To-Do":"#FF0000"}'
                 notification-api-url="sample-notifications.json"
             >
                 <template v-slot:header>
