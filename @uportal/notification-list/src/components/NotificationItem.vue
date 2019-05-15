@@ -31,9 +31,9 @@
                 </p>
                 <p class="media-link" v-if="notification.url">
                     <a
-                        href="javascript:void(0)"
+                        href=""
                         target="_blank"
-                        @click="$emit('performaction', linkAction)"
+                        @click="openAction($event, linkAction)"
                         rel="noopener noreferrer"
                     >
                         {{ notification.linkText || notification.url }}
@@ -51,7 +51,7 @@
                     <dropdown-item-button
                         v-for="(action, num) in notification.availableActions"
                         :key="num"
-                        @click="$emit('performaction', action)"
+                        @click="openAction($event, action)"
                     >
                         {{ action.label }}
                     </dropdown-item-button>
@@ -95,6 +95,12 @@ export default {
         dateFormat: {
             type: String,
             default: 'MM/DD/YYYY'
+        }
+    },
+    methods: {
+        openAction($event, action) {
+            $event.preventDefault();
+            this.$emit('performaction', action);
         }
     },
     computed: {
