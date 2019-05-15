@@ -1,13 +1,12 @@
 <template>
     <div class="dropdown">
         <button
-            class="btn btn-secondary"
+            class="btn btn-secondary btn-icon"
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-            :class="['btn-' + variant]"
             v-on:click="isActive = !isActive"
         >
             <slot name="button-content"></slot>
