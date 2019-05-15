@@ -58,7 +58,7 @@ export default {
         },
         colorMap: {
             type: String,
-            default: () => DEFAULT_COLOR_MAP
+            default: () => '{}'
         }
     },
     computed: {
