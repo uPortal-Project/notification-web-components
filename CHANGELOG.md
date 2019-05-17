@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased][]
 
+## [1.0.2][] - 2019-05-17
+
+### Fixes
+
+-   Instruct Babel to process `commonjs` in such a way that Webpack will package it appropriately (#45, #46)
+
 ## [1.0.1][] - 2019-05-15
 
 ### Fixes
@@ -34,6 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   `notification-list` web component newly implemented for this release
 -   `notification-modal` web component ported from the Apereo Notification portlet project
 
-[unreleased]: https://github.com/uPortal-contrib/notification-web-components/compare/v1.0.1...HEAD
+[unreleased]: https://github.com/uPortal-contrib/notification-web-components/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/uPortal-contrib/notification-web-components/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/uPortal-contrib/notification-web-components/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/uPortal-contrib/notification-web-components/compare/8e68938ac614423ace91d01e6402e2daa6071100...v1.0.0
