@@ -2,7 +2,6 @@
     <div class="dropdown">
         <button
             class="btn btn-secondary btn-icon"
-            :class="{'right': right}"
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -25,7 +24,7 @@
 <script>
 export default {
     name: 'ie-dropdown',
-    props: ['variant', 'right'],
+    props: ['variant'],
     data: () => ({
         isActive: false
     })
@@ -33,12 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.right + .dropdown-menu {
-    right: 0;
-    left: auto !important;
-}
-
 @media screen and (max-width: 768px) {
     .dropdown-menu {
         right: 0;
