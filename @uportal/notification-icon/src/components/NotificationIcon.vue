@@ -39,17 +39,18 @@ import oidc from '@uportal/open-id-connect';
 import ky from 'ky';
 import NotificationItem from './NotificationItem';
 
-function detectIE() {
+function detectLegacyBrowser() {
     const ua = window.navigator.userAgent;
 
     const msie = ua.includes('MSIE ');
     const trident = ua.includes('Trident/');
     const edge = ua.includes('Edge/');
+    const safari = ua.includes('Safari/');
 
-    return msie || trident || edge;
+    return msie || trident || edge || safari;
 }
 
-const isIE = detectIE();
+const isLegacy = detectLegacyBrowser();
 
 /**
  * HACK: This exists because IE/Edge get caught in an infinite event loop when
@@ -57,9 +58,9 @@ const isIE = detectIE();
  * incomplete, yet functional version that these browsers can fallback to rather
  * than crashing
  */
-const patchedDropdown = isIE ? ieDropdown : Dropdown;
-const patchedDropdownHeader = isIE ? ieDropdownHeader : DropdownHeader;
-const patchedDropdownItem = isIE ? ieDropdownItem : DropdownItem;
+const patchedDropdown = isLegacy ? ieDropdown : Dropdown;
+const patchedDropdownHeader = isLegacy ? ieDropdownHeader : DropdownHeader;
+const patchedDropdownItem = isLegacy ? ieDropdownItem : DropdownItem;
 
 Vue.use(AsyncComputed);
 
