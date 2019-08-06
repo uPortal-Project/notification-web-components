@@ -11,6 +11,7 @@
         "eslint-config-google": "^0.13.0",
         "eslint-plugin-flowtype": "^3.0.0",
         "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-prettier": "^3.1.0",
         "eslint-plugin-vue": "^5.0.0-beta.3",
         "lerna": "^3.4.0",
         "lerna-webjar": "^1.1.1",
@@ -138,6 +139,5 @@
     "engines": {
         "node": "^10.0.0 || ^11.0.0",
         "npm": "^6.5.0"
-    },
-    "dependencies": {}
+    }
 }
