@@ -1,6 +1,6 @@
 {
     "name": "@uportal/notification-modal",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "publishConfig": {
         "access": "public"
     },
@@ -78,5 +78,6 @@
             "vue-cli-service lint",
             "git add"
         ]
-    }
+    },
+    "gitHead": "2f090d5a56669aac0a93b0c35bff7196f8ee1446"
 }
