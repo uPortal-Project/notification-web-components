@@ -141,9 +141,20 @@ export default {
 
         // go to action url
         handleAction(actionUrl) {
+            const notice = this.notifications.shift();
+            const form = this.$refs.notificationForm;
             // set action url on form
-            this.$refs.notificationForm.action = actionUrl;
-            this.$refs.notificationForm.submit();
+            form.action = actionUrl;
+            if (notice.redirect) {
+                form.submit();
+            } else {
+                fetch(form.action, {
+                    method: form.method,
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    body: new FormData(form)
+                });
+            }
         }
     },
 
