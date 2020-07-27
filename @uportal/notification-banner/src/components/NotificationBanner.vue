@@ -1,8 +1,8 @@
 <template>
     <div class="notification-banner">
-        <b-alert v-for="(notification, index) in notifications" :key="index" varient="info" show>
+        <b-alert v-for="(notification, index) in notifications" :key="index" :varient="notificationVariant" :class="{'alert-custom': customVariant}" show>
             <h4>
-                <font-awesome-icon icon="info" />
+                <font-awesome-icon :icon="notificationIcon" :size="notificationIconSize" />
                 {{ notification.title }}
             </h4>
             <span v-html="notification.body" />
@@ -12,13 +12,13 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
+import { faInfo, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import bAlert from 'bootstrap-vue/es/components/alert/alert';
 import oidc from '@uportal/open-id-connect';
 import { get } from 'axios';
 
-library.add(faInfo);
+library.add(faInfo, faExclamationTriangle);
 
 export default {
     name: 'NotificationBanner',
@@ -36,6 +36,18 @@ export default {
             type: String,
             default: '/NotificationPortlet/api/v2/notifications'
         },
+        notificationVariant: {
+            type: String,
+            default: 'info'
+        },
+        notificationIcon: {
+            type: String,
+            default: 'info'
+        },
+        notificationIconSize: {
+            type: String,
+            default: '1x'
+        },
         filter: {
             type: String,
             default: ''
@@ -52,6 +64,13 @@ export default {
             // list of notifications to display
             notifications: []
         };
+    },
+
+    computed: {
+        customVariant: function () {
+            const { notificationVariant } = this;
+            return ['info', 'primary', 'success', 'danger', 'warning', 'secondary', 'light', 'dark'].indexOf(notificationVariant) === -1;
+        }
     },
 
     methods: {
@@ -103,7 +122,21 @@ export default {
 
     // custom styles
     margin: 1rem;
+    margin: var(--notif-banner-container-margin, 1rem);
+
     text-align: left;
+
+    .alert.alert-custom {
+        background: var(--notif-banner-bg-color, grey);
+        color: var(--notif-banner-body-fg-color, white);
+        border-color: var(--notif-banner-border-color, var(--notif-banner-bg-color, grey));
+        border-radius: var(--notif-banner-border-radius, .25rem);
+        margin: var(--notif-banner-item-margin, 1rem);
+        > h4 {
+            color: var(--notif-banner-heading-fg-color, white);
+            margin-top: 0;
+        }
+    }
 }
 
 .notification-banner svg {
