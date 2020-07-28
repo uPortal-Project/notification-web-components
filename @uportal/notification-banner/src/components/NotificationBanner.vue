@@ -138,15 +138,15 @@ export default {
     // custom styles
     margin: 1rem;
     margin: var(--notif-banner-container-margin, 1rem);
-
     text-align: left;
 
     .alert.alert-custom {
         background: var(--notif-banner-bg-color, grey);
         color: var(--notif-banner-body-fg-color, white);
         border-color: var(--notif-banner-border-color, var(--notif-banner-bg-color, grey));
-        border-radius: var(--notif-banner-border-radius, .25rem);
+        border-radius: var(--notif-banner-border-radius, 0.25rem);
         margin: var(--notif-banner-item-margin, 1rem);
+
         > h4 {
             color: var(--notif-banner-heading-fg-color, white);
             margin-top: 0;
