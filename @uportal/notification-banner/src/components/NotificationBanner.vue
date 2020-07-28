@@ -25,8 +25,8 @@ export default {
 
     props: {
         debug: {
-            type: Boolean,
-            default: false
+            type: String,
+            default: 'false'
         },
         userInfoApiUrl: {
             type: String,
@@ -51,6 +51,10 @@ export default {
         filter: {
             type: String,
             default: ''
+        },
+        refresh: {
+            type: String,
+            default: '0'
         }
     },
 
@@ -67,6 +71,9 @@ export default {
     },
 
     computed: {
+        isDebug: function () {
+            return this.debug === 'true' ? true : false;
+        },
         customVariant: function () {
             const { notificationVariant } = this;
             return ['info', 'primary', 'success', 'danger', 'warning', 'secondary', 'light', 'dark'].indexOf(notificationVariant) === -1;
@@ -76,11 +83,11 @@ export default {
     methods: {
         async fetchNotifications() {
             // read props
-            const { debug, notificationApiUrl, filter, userInfoApiUrl } = this;
+            const { notificationApiUrl, filter, userInfoApiUrl } = this;
 
             try {
                 // Obtain an OIDC Id Token, except in debug mode
-                const { encoded: token } = debug
+                const { encoded: token } = this.isDebug
                     ? { encoded: null }
                     : await oidc({ userInfoApiUrl });
 
@@ -100,6 +107,14 @@ export default {
                 // eslint-disable-next-line no-console
                 console.error(err);
             }
+
+            if (this.refresh !== '0') {
+                const { refresh } = this;
+                const time = parseInt(refresh);
+
+                setTimeout(() => this.fetchNotifications(), time);
+            }
+
         }
     },
 
