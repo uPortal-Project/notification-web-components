@@ -1,7 +1,11 @@
 <template>
     <div id="app">
         <img alt="Vue logo" src="./assets/logo.png" />
-        <NotificationBanner debug="true" notificationApiUrl="sample-notifications.json" filter="user=foobar" />
+        <NotificationBanner debug="true"
+            notificationVariant="success"
+            notificationApiUrl="sample-notifications.json"
+            filter="user=foobar"
+            notificationIcon="info" />
     </div>
 </template>
 
@@ -25,4 +29,5 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
 }
+
 </style>

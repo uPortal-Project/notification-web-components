@@ -20,6 +20,12 @@ import { get } from 'axios';
 
 library.add(faInfo, faExclamationTriangle);
 
+const variants = ['info', 'primary', 'success', 'danger', 'warning', 'secondary', 'light', 'dark'];
+const icons = ['info', 'exclamation-triangle'];
+const sizes = ['xs', 'sm', 'lg', ...[...Array(10).keys()].map(k => `${k + 1}x`)];
+
+const validator = (list) => (value) => list.indexOf(value) !== -1
+
 export default {
     name: 'NotificationBanner',
 
@@ -38,19 +44,22 @@ export default {
         },
         notificationVariant: {
             type: String,
-            default: 'info'
+            default: 'info',
+            validator: validator(variants)
         },
         notificationIcon: {
             type: String,
-            default: 'info'
+            default: 'info',
+            validator: validator(icons)
         },
         notificationIconSize: {
             type: String,
-            default: '1x'
+            default: '1x',
+            validator: validator(sizes)
         },
         filter: {
             type: String,
-            default: ''
+            default: '',
         },
         refresh: {
             type: String,
@@ -76,7 +85,7 @@ export default {
         },
         customVariant: function () {
             const { notificationVariant } = this;
-            return ['info', 'primary', 'success', 'danger', 'warning', 'secondary', 'light', 'dark'].indexOf(notificationVariant) === -1;
+            return variants.indexOf(notificationVariant) === -1;
         }
     },
 
@@ -142,13 +151,13 @@ export default {
 
     .alert.alert-custom {
         background: var(--notif-banner-bg-color, grey);
-        color: var(--notif-banner-body-fg-color, white);
+        color: var(--notif-banner-body-text-color, white);
         border-color: var(--notif-banner-border-color, var(--notif-banner-bg-color, grey));
         border-radius: var(--notif-banner-border-radius, 0.25rem);
         margin: var(--notif-banner-item-margin, 1rem);
 
         > h4 {
-            color: var(--notif-banner-heading-fg-color, white);
+            color: var(--notif-banner-heading-text-color, white);
             margin-top: 0;
         }
     }
