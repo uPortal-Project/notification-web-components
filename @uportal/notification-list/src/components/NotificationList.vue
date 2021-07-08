@@ -71,7 +71,13 @@ export default {
     },
     methods: {
         async gotoAction(action) {
-            if (action.redirect) {
+            let redirect = action.redirect ? action.redirect : false;
+
+            if (typeof redirect === 'string') {
+                redirect = redirect === 'true';
+            }
+
+            if (redirect) {
                 const form = document.createElement('form');
                 form.action = action.apiUrl;
                 form.method = 'POST';
