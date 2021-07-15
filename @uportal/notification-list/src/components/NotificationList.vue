@@ -16,7 +16,9 @@
                 :color-map="colors"
             >
             </notification-item>
-            <span v-if="loaded && !notifications.length">No results found.</span>
+            <span v-if="loaded && !notifications.length">
+                <slot name="empty">No results found.</slot>
+            </span>
         </div>
         <div class="notification-list-footer notification-list-section">
             <slot name="footer"></slot>
