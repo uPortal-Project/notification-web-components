@@ -26,7 +26,7 @@
         "yorkie": "^2.0.0"
     },
     "scripts": {
-        "prebuild": "rm -rf \"**/node_modules\" && npm ci && lerna bootstrap --ci",
+        "prebuild": "rm -rf \"**/node_modules\" && npm ci",
         "build": "lerna run build",
         "format": "run-p format:*",
         "format:js": "prettier-eslint --write '**/*.{js,vue}'",
