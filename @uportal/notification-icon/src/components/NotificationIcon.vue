@@ -29,7 +29,7 @@ import AsyncComputed from 'vue-async-computed';
 import ieDropdown from './ieDropdown';
 import ieDropdownHeader from './ieDropdownHeader';
 import ieDropdownItem from './ieDropdownItem';
-import { Dropdown, DropdownHeader, DropdownItem } from 'bootstrap-vue';
+import { BDropdown, BDropdownHeader, BDropdownItem } from 'bootstrap-vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -56,9 +56,9 @@ const isLegacy = detectLegacyBrowser();
  * incomplete, yet functional version that these browsers can fallback to rather
  * than crashing
  */
-const patchedDropdown = isLegacy ? ieDropdown : Dropdown;
-const patchedDropdownHeader = isLegacy ? ieDropdownHeader : DropdownHeader;
-const patchedDropdownItem = isLegacy ? ieDropdownItem : DropdownItem;
+const patchedDropdown = isLegacy ? ieDropdown : BDropdown;
+const patchedDropdownHeader = isLegacy ? ieDropdownHeader : BDropdownHeader;
+const patchedDropdownItem = isLegacy ? ieDropdownItem : BDropdownItem;
 
 Vue.use(AsyncComputed);
 

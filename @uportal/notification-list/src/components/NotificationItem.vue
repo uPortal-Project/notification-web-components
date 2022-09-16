@@ -61,7 +61,7 @@
     </article>
 </template>
 <script>
-import { Dropdown, DropdownItemButton } from 'bootstrap-vue';
+import { BDropdown, BDropdownItemButton } from 'bootstrap-vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons/faCommentAlt';
@@ -147,8 +147,8 @@ export default {
         },
     },
     components: {
-        Dropdown,
-        DropdownItemButton,
+        Dropdown: BDropdown,
+        DropdownItemButton: BDropdownItemButton,
         FontAwesomeIcon,
     },
 };

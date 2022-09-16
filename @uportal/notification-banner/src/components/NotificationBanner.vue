@@ -20,7 +20,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faInfo, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { bAlert } from 'bootstrap-vue';
+import { BAlert } from 'bootstrap-vue';
 import oidc from '@uportal/open-id-connect';
 import { get } from 'axios';
 
@@ -74,7 +74,7 @@ export default {
     },
 
     components: {
-        'b-alert': bAlert,
+        'b-alert': BAlert,
         'font-awesome-icon': FontAwesomeIcon,
     },
 

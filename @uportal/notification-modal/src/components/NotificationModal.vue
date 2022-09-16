@@ -35,7 +35,7 @@
 <script>
 import ieModal from './ieModal';
 import ieButton from './ieButton';
-import { bButton, bModal } from 'bootstrap-vue';
+import { BButton, BModal } from 'bootstrap-vue';
 import oidc from '@uportal/open-id-connect';
 import { get } from 'axios';
 
@@ -57,8 +57,8 @@ const isIE = detectIE();
  * incomplete, yet functional version that these browsers can fallback to rather
  * than crashing
  */
-const patchedModal = isIE ? ieModal : bModal;
-const patchedButton = isIE ? ieButton : bButton;
+const patchedModal = isIE ? ieModal : BModal;
+const patchedButton = isIE ? ieButton : BButton;
 
 export default {
     name: 'NotificationModal',

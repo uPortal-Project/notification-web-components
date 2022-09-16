@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { DropdownItem } from 'bootstrap-vue';
+import { BDropdownItem } from 'bootstrap-vue';
 import { NAVIGATION_STRATEGIES } from './NotificationIcon';
 
 export default {
@@ -65,7 +65,7 @@ export default {
         },
     },
     components: {
-        DropdownItem,
+        DropdownItem: BDropdownItem,
     },
 };
 </script>
