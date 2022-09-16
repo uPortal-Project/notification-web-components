@@ -26,7 +26,6 @@
         "yorkie": "^2.0.0"
     },
     "scripts": {
-        "bootstrap": "lerna bootstrap --ci",
         "prebuild": "rm -rf \"**/node_modules\" && npm ci && lerna bootstrap --ci",
         "build": "lerna run build",
         "format": "run-p format:*",
