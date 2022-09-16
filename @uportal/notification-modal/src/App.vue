@@ -11,7 +11,7 @@ import NotificationModal from './components/NotificationModal.vue';
 export default {
     name: 'app',
     components: {
-        NotificationModal
-    }
+        NotificationModal,
+    },
 };
 </script>

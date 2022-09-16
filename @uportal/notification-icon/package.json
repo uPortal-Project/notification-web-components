@@ -16,35 +16,35 @@
     "source": "src/components/NotificationIcon.vue",
     "scripts": {
         "start": "vue-cli-service serve",
-        "prebuild": "babel node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
+        "prebuild": "babel ../../node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o ../../node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
         "build": "vue-cli-service build --name notification-icon --target wc src/components/NotificationIcon.vue",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.8",
-        "@fortawesome/free-solid-svg-icons": "^5.5.0",
-        "@fortawesome/vue-fontawesome": "^0.1.2",
-        "@uportal/open-id-connect": "^1.19.0",
-        "bootstrap-vue": "^2.0.0-rc.11",
-        "ky": "^0.15.0",
-        "vue": "2.6.11",
+        "@fortawesome/fontawesome-svg-core": "^6.0.0",
+        "@fortawesome/free-solid-svg-icons": "^6.0.0",
+        "@fortawesome/vue-fontawesome": "^2.0.0",
+        "@uportal/open-id-connect": "^1.37.0",
+        "bootstrap": "^4.0.0",
+        "bootstrap-vue": "^2.0.0",
+        "ky": "^0.25.0",
+        "vue": "2.7.10",
         "vue-async-computed": "^3.5.0"
     },
     "devDependencies": {
-        "@babel/cli": "^7.2.0",
-        "@babel/core": "^7.2.0",
-        "@babel/plugin-proposal-optional-chaining": "^7.2.0",
-        "@babel/plugin-transform-runtime": "^7.2.0",
-        "@babel/preset-env": "^7.2.0",
-        "@vue/cli-plugin-babel": "^3.2.0",
-        "@vue/cli-plugin-eslint": "^3.2.0",
-        "@vue/cli-service": "^3.2.0",
-        "babel-eslint": "^10.0.1",
-        "eslint": "^6.0.0",
-        "eslint-plugin-vue": "^5.0.0",
-        "node-sass": "4.13.0",
-        "sass-loader": "^8.0.0",
-        "vue-template-compiler": "2.6.11"
+        "@babel/cli": "^7.0.0",
+        "@babel/core": "^7.0.0",
+        "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+        "@babel/plugin-transform-runtime": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "@vue/cli-plugin-babel": "^5.0.0",
+        "@vue/cli-plugin-eslint": "^5.0.0",
+        "@vue/cli-service": "^5.0.0",
+        "eslint": "^8.0.0",
+        "eslint-plugin-vue": "^9.0.0",
+        "node-sass": "^7.0.0",
+        "sass-loader": "^13.0.0",
+        "vue-template-compiler": "2.7.10"
     },
     "eslintConfig": {
         "root": true,
@@ -57,7 +57,8 @@
         ],
         "rules": {},
         "parserOptions": {
-            "parser": "babel-eslint"
+            "parser": "@babel/eslint-parser",
+            "requireConfigFile": false
         }
     },
     "postcss": {

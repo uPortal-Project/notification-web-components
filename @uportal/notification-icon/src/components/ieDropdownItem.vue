@@ -8,6 +8,6 @@
 <script>
 export default {
     name: 'ie-dropdown-item',
-    props: ['href']
+    props: ['href'],
 };
 </script>

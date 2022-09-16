@@ -26,8 +26,8 @@ export default {
     name: 'ie-dropdown',
     props: ['variant'],
     data: () => ({
-        isActive: false
-    })
+        isActive: false,
+    }),
 };
 </script>
 

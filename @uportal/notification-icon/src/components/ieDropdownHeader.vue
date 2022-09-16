@@ -4,6 +4,6 @@
 
 <script>
 export default {
-    name: 'ie-dropdown-header'
+    name: 'ie-dropdown-header',
 };
 </script>

@@ -15,33 +15,33 @@
     "main": "dist/notification-modal.js",
     "source": "src/components/NotificationModal.vue",
     "scripts": {
-        "serve": "vue-cli-service serve",
+        "start": "vue-cli-service serve",
         "build": "vue-cli-service build --target wc --name notification-modal 'src/components/NotificationModal.vue'",
-        "prebuild": "babel node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
+        "prebuild": "babel ../../node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js -o ../../node_modules/@vue/web-component-wrapper/dist/vue-wc-wrapper.js",
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
-        "@uportal/open-id-connect": "1.33.2",
-        "axios": "0.19.2",
-        "bootstrap-vue": "2.0.0-rc.21",
-        "vue": "^2.6.10"
+        "@uportal/open-id-connect": "^1.37.0",
+        "axios": "^0.27.0",
+        "bootstrap-vue": "^2.0.0",
+        "vue": "^2.7.10"
     },
     "devDependencies": {
-        "@babel/cli": "^7.5.5",
-        "@babel/core": "^7.5.5",
-        "@babel/plugin-transform-runtime": "^7.5.5",
-        "@babel/preset-env": "^7.5.5",
-        "@vue/cli-plugin-babel": "3.12.1",
-        "@vue/cli-plugin-eslint": "3.12.1",
-        "@vue/cli-service": "3.12.1",
-        "@vue/eslint-config-prettier": "5.1.0",
-        "eslint": "^6.1.0",
-        "eslint-plugin-prettier": "^3.1.0",
-        "eslint-plugin-vue": "^5.2.3",
+        "@babel/cli": "^7.0.0",
+        "@babel/core": "^7.0.0",
+        "@babel/plugin-transform-runtime": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "@vue/cli-plugin-babel": "^5.0.0",
+        "@vue/cli-plugin-eslint": "^5.0.0",
+        "@vue/cli-service": "^5.0.0",
+        "@vue/eslint-config-prettier": "^7.0.0",
+        "eslint": "^8.0.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-vue": "^9.0.0",
         "lint-staged": "9.5.0",
-        "node-sass": "4.13.0",
-        "sass-loader": "8.0.0",
-        "vue-template-compiler": "2.6.11"
+        "node-sass": "^7.0.0",
+        "sass-loader": "^13.0.0",
+        "vue-template-compiler": "^2.7.10"
     },
     "eslintConfig": {
         "root": true,
@@ -54,7 +54,8 @@
         ],
         "rules": {},
         "parserOptions": {
-            "parser": "babel-eslint"
+            "parser": "@babel/eslint-parser",
+            "requireConfigFile": false
         }
     },
     "postcss": {

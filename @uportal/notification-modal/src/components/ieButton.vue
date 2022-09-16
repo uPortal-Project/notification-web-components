@@ -12,6 +12,6 @@
  * than crashing
  */
 export default {
-    name: 'ie-modal'
+    name: 'ie-modal',
 };
 </script>

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import DropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
+import { DropdownItem } from 'bootstrap-vue';
 import { NAVIGATION_STRATEGIES } from './NotificationIcon';
 
 export default {
@@ -19,9 +19,9 @@ export default {
         notification: Object,
         strategy: {
             type: String,
-            validator: value => NAVIGATION_STRATEGIES.indexOf(value) >= 0
+            validator: (value) => NAVIGATION_STRATEGIES.indexOf(value) >= 0,
         },
-        seeAllNotificationsUrl: String
+        seeAllNotificationsUrl: String,
     },
     computed: {
         redirectAction() {
@@ -62,11 +62,11 @@ export default {
         },
         target() {
             return this.redirectAction || this.strategy === 'list' ? '_self' : '_blank';
-        }
+        },
     },
     components: {
-        DropdownItem
-    }
+        DropdownItem,
+    },
 };
 </script>
 

@@ -15,8 +15,8 @@ import NotificationIcon from './components/NotificationIcon.vue';
 export default {
     name: 'app',
     components: {
-        NotificationIcon
-    }
+        NotificationIcon,
+    },
 };
 </script>
 <style lang="scss">
