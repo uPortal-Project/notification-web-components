@@ -29,9 +29,7 @@ import AsyncComputed from 'vue-async-computed';
 import ieDropdown from './ieDropdown';
 import ieDropdownHeader from './ieDropdownHeader';
 import ieDropdownItem from './ieDropdownItem';
-import Dropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
-import DropdownHeader from 'bootstrap-vue/es/components/dropdown/dropdown-header';
-import DropdownItem from 'bootstrap-vue/es/components/dropdown/dropdown-item';
+import { BDropdown, BDropdownHeader, BDropdownItem } from 'bootstrap-vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -58,9 +56,9 @@ const isLegacy = detectLegacyBrowser();
  * incomplete, yet functional version that these browsers can fallback to rather
  * than crashing
  */
-const patchedDropdown = isLegacy ? ieDropdown : Dropdown;
-const patchedDropdownHeader = isLegacy ? ieDropdownHeader : DropdownHeader;
-const patchedDropdownItem = isLegacy ? ieDropdownItem : DropdownItem;
+const patchedDropdown = isLegacy ? ieDropdown : BDropdown;
+const patchedDropdownHeader = isLegacy ? ieDropdownHeader : BDropdownHeader;
+const patchedDropdownItem = isLegacy ? ieDropdownItem : BDropdownItem;
 
 Vue.use(AsyncComputed);
 
@@ -73,29 +71,29 @@ export default {
     props: {
         userInfoApiUrl: {
             type: String,
-            default: '/uPortal/api/v5-1/userinfo'
+            default: '/uPortal/api/v5-1/userinfo',
         },
         notificationApiUrl: {
             type: String,
-            default: '/NotificationPortlet/api/v2/notifications'
+            default: '/NotificationPortlet/api/v2/notifications',
         },
         seeAllNotificationsUrl: {
             type: String,
-            default: '/uPortal/p/notification'
+            default: '/uPortal/p/notification',
         },
         countAllNotifications: {
             type: Boolean,
-            default: false
+            default: false,
         },
         debug: {
             type: Boolean,
-            default: false
+            default: false,
         },
         navigationStrategy: {
             type: String,
             default: 'link',
-            validator: value => NAVIGATION_STRATEGIES.indexOf(value) >= 0
-        }
+            validator: (value) => NAVIGATION_STRATEGIES.indexOf(value) >= 0,
+        },
     },
     asyncComputed: {
         notifications: {
@@ -107,7 +105,7 @@ export default {
                         ? {}
                         : {
                               Authorization: 'Bearer ' + (await oidc()).encoded,
-                              'content-type': 'application/jwt'
+                              'content-type': 'application/jwt',
                           };
                     return await ky.get(notificationApiUrl, { headers }).json();
                 } catch (err) {
@@ -117,8 +115,8 @@ export default {
                 }
             },
             default: [],
-            lazy: true
-        }
+            lazy: true,
+        },
     },
     computed: {
         count() {
@@ -130,25 +128,26 @@ export default {
         },
         countDisplay() {
             return this.count < 10 ? this.count : '*';
-        }
+        },
     },
     components: {
         Dropdown: patchedDropdown,
         DropdownHeader: patchedDropdownHeader,
         DropdownItem: patchedDropdownItem,
         FontAwesomeIcon,
-        NotificationItem
-    }
+        NotificationItem,
+    },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.notification-icon /deep/ {
+:deep(.notification-icon) {
     // core bootstrap framework
     @import '../../node_modules/bootstrap/scss/functions';
     @import '../../node_modules/bootstrap/scss/variables';
     @import '../../node_modules/bootstrap/scss/mixins';
+
     // bootstrap styles needed by component
     @import '../../node_modules/bootstrap/scss/reboot';
     @import '../../node_modules/bootstrap/scss/dropdown';

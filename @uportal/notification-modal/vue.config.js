@@ -1,3 +1,3 @@
 module.exports = {
-    transpileDependencies: ['bootstrap-vue']
+    transpileDependencies: ['bootstrap-vue'],
 };

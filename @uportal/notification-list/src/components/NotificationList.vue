@@ -31,7 +31,7 @@ import queryString from 'query-string';
 const DEFAULT_COLOR_MAP = {
     Announcement: '#6649bb',
     Holds: '#487df9',
-    'To-Do': '#c85a89'
+    'To-Do': '#c85a89',
 };
 
 export default {
@@ -40,34 +40,34 @@ export default {
         return {
             notifications: [],
             selectedAction: null,
-            loaded: false
+            loaded: false,
         };
     },
     props: {
         oidcUrl: {
             type: String,
-            default: '/uPortal/api/v5-1/userinfo'
+            default: '/uPortal/api/v5-1/userinfo',
         },
         notificationApiUrl: {
             type: String,
-            default: '/NotificationPortlet/api/v2/notifications'
+            default: '/NotificationPortlet/api/v2/notifications',
         },
         debug: {
             type: Boolean,
-            default: false
+            default: false,
         },
         colorMap: {
             type: String,
-            default: () => '{}'
-        }
+            default: () => '{}',
+        },
     },
     computed: {
         colors() {
             return {
                 ...DEFAULT_COLOR_MAP,
-                ...JSON.parse(this.colorMap)
+                ...JSON.parse(this.colorMap),
             };
-        }
+        },
     },
     methods: {
         gotoAction(action) {
@@ -105,8 +105,8 @@ export default {
                     credentials: 'same-origin',
                     headers: {
                         Authorization: 'Bearer ' + token,
-                        'content-type': 'application/jwt'
-                    }
+                        'content-type': 'application/jwt',
+                    },
                 });
 
                 if (!response.ok || response.status !== 200) {
@@ -121,7 +121,7 @@ export default {
             } finally {
                 this.loaded = true;
             }
-        }
+        },
     },
     mounted() {
         this.fetchNotificationData();
@@ -130,8 +130,8 @@ export default {
         this.highlight = queryParams.highlight || queryParams.pP_highlight;
     },
     components: {
-        NotificationItem
-    }
+        NotificationItem,
+    },
 };
 </script>
 <style lang="scss" scoped>

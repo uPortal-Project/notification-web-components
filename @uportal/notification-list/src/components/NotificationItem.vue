@@ -61,8 +61,7 @@
     </article>
 </template>
 <script>
-import Dropdown from 'bootstrap-vue/es/components/dropdown/dropdown';
-import DropdownItemButton from 'bootstrap-vue/es/components/dropdown/dropdown-item-button';
+import { BDropdown, BDropdownItemButton } from 'bootstrap-vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { faCommentAlt } from '@fortawesome/free-solid-svg-icons/faCommentAlt';
@@ -76,32 +75,32 @@ export default {
     name: 'notification-item',
     data() {
         return {
-            imageError: false
+            imageError: false,
         };
     },
     props: {
         notification: {
             type: Object,
-            required: true
+            required: true,
         },
         highlight: {
             type: Boolean,
-            default: false
+            default: false,
         },
         colorMap: {
             type: Object,
-            default: () => ({})
+            default: () => ({}),
         },
         dateFormat: {
             type: String,
-            default: 'MM/DD/YYYY'
-        }
+            default: 'MM/DD/YYYY',
+        },
     },
     methods: {
         openAction($event, action) {
             $event.preventDefault();
             this.$emit('performaction', action);
-        }
+        },
     },
     computed: {
         isRead() {
@@ -109,7 +108,7 @@ export default {
         },
         linkAction() {
             return {
-                apiUrl: this.notification.url
+                apiUrl: this.notification.url,
             };
         },
         itemHeading() {
@@ -145,17 +144,17 @@ export default {
             return this.notification.attributes.category
                 ? this.colorMap[this.notification.attributes.category[0]]
                 : '';
-        }
+        },
     },
     components: {
-        Dropdown,
-        DropdownItemButton,
-        FontAwesomeIcon
-    }
+        Dropdown: BDropdown,
+        DropdownItemButton: BDropdownItemButton,
+        FontAwesomeIcon,
+    },
 };
 </script>
 <style lang="scss" scoped>
-.notification-item-container /deep/ {
+:deep(.notification-item-container) {
     @import '../../node_modules/bootstrap/scss/bootstrap';
 
     .hidden {

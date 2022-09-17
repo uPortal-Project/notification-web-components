@@ -1,11 +1,13 @@
 <template>
     <div id="app">
         <img alt="Vue logo" src="./assets/logo.png" />
-        <NotificationBanner debug="true"
+        <NotificationBanner
+            debug="true"
             notificationVariant="success"
             notificationApiUrl="sample-notifications.json"
             filter="user=foobar"
-            notificationIcon="info" />
+            notificationIcon="info"
+        />
     </div>
 </template>
 
@@ -15,19 +17,18 @@ import NotificationBanner from './components/NotificationBanner.vue';
 export default {
     name: 'app',
     components: {
-        NotificationBanner
-    }
+        NotificationBanner,
+    },
 };
 </script>
 
 <style>
 #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
 }
-
 </style>

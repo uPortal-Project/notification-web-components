@@ -1,6 +1,12 @@
 <template>
     <div class="notification-banner">
-        <b-alert v-for="(notification, index) in notifications" :key="index" :varient="notificationVariant" :class="{'alert-custom': customVariant}" show>
+        <b-alert
+            v-for="(notification, index) in notifications"
+            :key="index"
+            :varient="notificationVariant"
+            :class="{ 'alert-custom': customVariant }"
+            show
+        >
             <h4>
                 <font-awesome-icon :icon="notificationIcon" :size="notificationIconSize" />
                 {{ notification.title }}
@@ -14,7 +20,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faInfo, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import bAlert from 'bootstrap-vue/es/components/alert/alert';
+import { BAlert } from 'bootstrap-vue';
 import oidc from '@uportal/open-id-connect';
 import { get } from 'axios';
 
@@ -22,9 +28,9 @@ library.add(faInfo, faExclamationTriangle);
 
 const variants = ['info', 'primary', 'success', 'danger', 'warning', 'secondary', 'light', 'dark'];
 const icons = ['info', 'exclamation-triangle'];
-const sizes = ['xs', 'sm', 'lg', ...[...Array(10).keys()].map(k => `${k + 1}x`)];
+const sizes = ['xs', 'sm', 'lg', ...[...Array(10).keys()].map((k) => `${k + 1}x`)];
 
-const validator = (list) => (value) => list.indexOf(value) !== -1
+const validator = (list) => (value) => list.indexOf(value) !== -1;
 
 export default {
     name: 'NotificationBanner',
@@ -32,30 +38,30 @@ export default {
     props: {
         debug: {
             type: String,
-            default: 'false'
+            default: 'false',
         },
         userInfoApiUrl: {
             type: String,
-            default: '/uPortal/api/v5-1/userinfo'
+            default: '/uPortal/api/v5-1/userinfo',
         },
         notificationApiUrl: {
             type: String,
-            default: '/NotificationPortlet/api/v2/notifications'
+            default: '/NotificationPortlet/api/v2/notifications',
         },
         notificationVariant: {
             type: String,
             default: 'info',
-            validator: validator(variants)
+            validator: validator(variants),
         },
         notificationIcon: {
             type: String,
             default: 'info',
-            validator: validator(icons)
+            validator: validator(icons),
         },
         notificationIconSize: {
             type: String,
             default: '1x',
-            validator: validator(sizes)
+            validator: validator(sizes),
         },
         filter: {
             type: String,
@@ -63,19 +69,19 @@ export default {
         },
         refresh: {
             type: String,
-            default: '0'
-        }
+            default: '0',
+        },
     },
 
     components: {
-        'b-alert': bAlert,
-        'font-awesome-icon': FontAwesomeIcon
+        'b-alert': BAlert,
+        'font-awesome-icon': FontAwesomeIcon,
     },
 
     data() {
         return {
             // list of notifications to display
-            notifications: []
+            notifications: [],
         };
     },
 
@@ -86,7 +92,7 @@ export default {
         customVariant: function () {
             const { notificationVariant } = this;
             return variants.indexOf(notificationVariant) === -1;
-        }
+        },
     },
 
     methods: {
@@ -106,8 +112,8 @@ export default {
                     withCredentials: true,
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        'content-type': 'application/jwt'
-                    }
+                        'content-type': 'application/jwt',
+                    },
                 });
 
                 // store notifications to state
@@ -123,14 +129,13 @@ export default {
 
                 setTimeout(() => this.fetchNotifications(), time);
             }
-
-        }
+        },
     },
 
     // entrypoint
     created() {
         return this.fetchNotifications();
-    }
+    },
 };
 </script>
 
@@ -138,11 +143,12 @@ export default {
 <style lang="scss" scoped>
 .notification-banner {
     // core bootstrap framework
-    @import '../../node_modules/bootstrap/scss/functions.scss';
-    @import '../../node_modules/bootstrap/scss/variables.scss';
-    @import '../../node_modules/bootstrap/scss/mixins.scss';
+    @import '../../node_modules/bootstrap/scss/functions';
+    @import '../../node_modules/bootstrap/scss/variables';
+    @import '../../node_modules/bootstrap/scss/mixins';
+
     // bootstrap styles needed by page
-    @import '../../node_modules/bootstrap/scss/alert.scss';
+    @import '../../node_modules/bootstrap/scss/alert';
 
     // custom styles
     margin: 1rem;

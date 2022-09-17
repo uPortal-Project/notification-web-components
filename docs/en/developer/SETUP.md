@@ -11,7 +11,6 @@
 2.  `git clone https://github.com/uPortal-contrib/notification-web-components`
 3.  `cd notification-web-components`
 4.  `npm ci`
-5.  `npm run bootstrap`
 
 ## Running a Component Locally
 

@@ -35,8 +35,7 @@
 <script>
 import ieModal from './ieModal';
 import ieButton from './ieButton';
-import bModal from 'bootstrap-vue/es/components/modal/modal';
-import bButton from 'bootstrap-vue/es/components/button/button';
+import { BButton, BModal } from 'bootstrap-vue';
 import oidc from '@uportal/open-id-connect';
 import { get } from 'axios';
 
@@ -58,8 +57,8 @@ const isIE = detectIE();
  * incomplete, yet functional version that these browsers can fallback to rather
  * than crashing
  */
-const patchedModal = isIE ? ieModal : bModal;
-const patchedButton = isIE ? ieButton : bButton;
+const patchedModal = isIE ? ieModal : BModal;
+const patchedButton = isIE ? ieButton : BButton;
 
 export default {
     name: 'NotificationModal',
@@ -67,31 +66,31 @@ export default {
     props: {
         debug: {
             type: Boolean,
-            default: false
+            default: false,
         },
         userInfoApiUrl: {
             type: String,
-            default: '/uPortal/api/v5-1/userinfo'
+            default: '/uPortal/api/v5-1/userinfo',
         },
         notificationApiUrl: {
             type: String,
-            default: '/NotificationPortlet/api/v2/notifications'
+            default: '/NotificationPortlet/api/v2/notifications',
         },
         filter: {
             type: String,
-            default: ''
-        }
+            default: '',
+        },
     },
 
     components: {
         'b-modal': patchedModal,
-        'b-button': patchedButton
+        'b-button': patchedButton,
     },
 
     data() {
         return {
             // list of notifications to display
-            notifications: []
+            notifications: [],
         };
     },
 
@@ -112,8 +111,8 @@ export default {
                     withCredentials: true,
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        'content-type': 'application/jwt'
-                    }
+                        'content-type': 'application/jwt',
+                    },
                 });
 
                 // store notifications to state
@@ -152,10 +151,10 @@ export default {
                     method: form.method,
                     mode: 'same-origin',
                     credentials: 'same-origin',
-                    body: new FormData(form)
+                    body: new FormData(form),
                 });
             }
-        }
+        },
     },
 
     // entrypoint
@@ -186,24 +185,25 @@ export default {
 
         showModal() {
             return this.notifications.length > 0;
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 // HACK: needed to scope styles for browsers that do not have shadow dom support
-.notification-modal-wrapper /deep/ {
+:deep(.notification-modal-wrapper) {
     // core bootstrap framework
-    @import '../../node_modules/bootstrap/scss/functions.scss';
-    @import '../../node_modules/bootstrap/scss/variables.scss';
-    @import '../../node_modules/bootstrap/scss/mixins.scss';
+    @import '../../node_modules/bootstrap/scss/functions';
+    @import '../../node_modules/bootstrap/scss/variables';
+    @import '../../node_modules/bootstrap/scss/mixins';
+
     // bootstrap styles needed by page
-    @import '../../node_modules/bootstrap/scss/utilities.scss';
-    @import '../../node_modules/bootstrap/scss/type.scss';
-    @import '../../node_modules/bootstrap/scss/buttons.scss';
-    @import '../../node_modules/bootstrap/scss/close.scss';
-    @import '../../node_modules/bootstrap/scss/modal.scss';
+    @import '../../node_modules/bootstrap/scss/utilities';
+    @import '../../node_modules/bootstrap/scss/type';
+    @import '../../node_modules/bootstrap/scss/buttons';
+    @import '../../node_modules/bootstrap/scss/close';
+    @import '../../node_modules/bootstrap/scss/modal';
 
     // HACK: override bootstrap 3 fade selector when shadow dom is off
     // if this isn't set, bootstrap 3 makes the modal completely transparent

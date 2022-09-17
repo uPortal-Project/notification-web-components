@@ -39,26 +39,26 @@ export default {
 
     props: {
         title: {
-            type: String
+            type: String,
         },
         visible: {
             type: Boolean,
-            default: false
+            default: false,
         },
         hideFooter: {
             type: Boolean,
-            default: false
+            default: false,
         },
         hideHeaderClose: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
 
     methods: {
         clickHandler(evt) {
             this.$emit('hide', evt);
-        }
-    }
+        },
+    },
 };
 </script>

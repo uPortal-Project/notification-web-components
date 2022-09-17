@@ -19,8 +19,8 @@ import NotificationList from './components/NotificationList.vue';
 export default {
     name: 'app',
     components: {
-        NotificationList
-    }
+        NotificationList,
+    },
 };
 </script>
 
