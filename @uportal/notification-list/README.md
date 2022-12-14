@@ -118,3 +118,11 @@ bg = background
     --notif-list-item-dd-height: 28px; /* size of ellipsis-v icon trigger for dropdown */
 }
 ```
+
+### Slots
+
+`<notification-list>` has the following slots:
+
+* `header`
+* `empty`: displayed when there are no notifications to list
+* `footer`

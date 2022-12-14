@@ -9,6 +9,9 @@
                 <template v-slot:header>
                     <h2>Recent Updates</h2>
                 </template>
+                <template v-slot:empty>
+                    You have no notifications at this time.
+                </template>
             </notification-list>
         </div>
     </main>
