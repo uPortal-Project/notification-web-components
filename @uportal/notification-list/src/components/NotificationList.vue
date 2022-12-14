@@ -70,14 +70,32 @@ export default {
         }
     },
     methods: {
-        gotoAction(action) {
-            const form = document.createElement('form');
-            form.action = action.apiUrl;
-            form.method = 'POST';
-            form.target = '_blank';
-            form.style.display = 'none';
-            document.body.appendChild(form);
-            form.submit();
+        async gotoAction(action) {
+            let redirect = action.redirect ? action.redirect : false;
+
+            if (typeof redirect === 'string') {
+                redirect = redirect === 'true';
+            }
+
+            if (redirect) {
+                const form = document.createElement('form');
+                form.action = action.apiUrl;
+                form.method = 'POST';
+                form.target = '_blank';
+                form.style.display = 'none';
+                document.body.appendChild(form);
+                form.submit();
+            }
+            else {
+                const response = await fetch(action.apiUrl, {
+                    credentials: 'same-origin',
+                    method: 'POST',
+                });
+
+                if (!response.ok || response.status !== 200) {
+                    throw new Error(response.statusText);
+                }
+            }
         },
         markAllAsRead() {
             this.gotoAction(this.markAllAsReadLink);
