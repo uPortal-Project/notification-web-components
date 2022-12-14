@@ -26,7 +26,7 @@
                         itemDueDate
                     }}</span>
                 </p>
-                <p class="blockquote-footer">
+                <p v-if="notification.source" class="blockquote-footer">
                     Source: <cite :title="notification.source">{{ notification.source }}</cite>
                 </p>
                 <p class="media-link" v-if="notification.url">
