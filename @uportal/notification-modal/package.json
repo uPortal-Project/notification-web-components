@@ -41,7 +41,7 @@
         "lint-staged": "9.5.0",
         "node-sass": "4.13.0",
         "sass-loader": "8.0.0",
-        "vue-template-compiler": "2.6.11"
+        "vue-template-compiler": "2.7.16"
     },
     "eslintConfig": {
         "root": true,
