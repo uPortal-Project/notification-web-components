@@ -24,7 +24,7 @@
         "@uportal/open-id-connect": "1.33.2",
         "axios": "0.19.2",
         "bootstrap-vue": "2.0.0-rc.21",
-        "vue": "^2.6.10"
+        "vue": "^3.0.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.5.5",
